@@ -3,13 +3,13 @@ from selenium import webdriver
 import re # regex
 
 #chrome driver, to open the browser
-chromedriver = "/home/nissan/Desktop/PythonApps/parserTest/chromedriver"
+chromedriver = "../parserTest/chromedriver"
 driver = webdriver.Chrome(chromedriver)
 
 #Change This
 username = "find.freind.184"
 emailLogin = 'yitzhak.sharon7@gmail.com'
-passwordLogin = 'XXXXXXX'
+passwordLogin = 'XXXXX'
 
 #Open this site
 driver.get('https://www.facebook.com/login.php')
