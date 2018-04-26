@@ -2,19 +2,20 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import re # regex
 
+#chrome driver, to open the browser
 chromedriver = "/home/nissan/Desktop/PythonApps/parserTest/chromedriver"
 driver = webdriver.Chrome(chromedriver)
 
+#Change This
 username = "find.freind.184"
 emailLogin = 'yitzhak.sharon7@gmail.com'
-passwordLogin = 'XXXXXXXX'
+passwordLogin = 'XXXXXXX'
 
-# url = "https://www.hackerrank.com/"
+#Open this site
 driver.get('https://www.facebook.com/login.php')
 print("Opened facebook...")
 
-# driver.get('http://www.gmail.com')
-
+# Find element on login page and enter credentials
 email = driver.find_element_by_xpath("//input[@id='email' or @name='email']")
 email.send_keys(emailLogin)
 print("Email Id entered...")
@@ -28,14 +29,14 @@ print("FB opened")
 
 
 # load page into beautiful soup
-driver.implicitly_wait(5) #wait
+driver.implicitly_wait(5) # wait 5 seconds
 print("waited 5 secs")
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
 print(soup.prettify())
 
 
-
+#redirect to friends
 driver.get('https://www.facebook.com/'+username+'/friends')
 
 #======== start extracting =======
