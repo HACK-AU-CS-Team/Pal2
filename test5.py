@@ -3,7 +3,7 @@ from selenium import webdriver
 import re # regex
 
 #chrome driver, to open the browser
-chromedriver = "../parserTest/chromedriver"
+chromedriver = "../Pal2/chromedriver"
 driver = webdriver.Chrome(chromedriver)
 
 #Change This
