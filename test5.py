@@ -59,7 +59,7 @@ for tag in tags:
 
 # bs = BeautifulSoup(friendsHTML, "html.parser")
 # print (bs(text=re.compile('exact text')))
-print("\n\n\n\n")
+print("\n\n\n\n\n")
 # for link in bs.find_all('id'):
 #     print(link)
 # txt = bs.script.get_text()
