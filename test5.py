@@ -9,7 +9,7 @@ driver = webdriver.Chrome(chromedriver)
 #Change This
 username = "find.freind.184"
 emailLogin = 'yitzhak.sharon7@gmail.com'
-passwordLogin = 'XXXXX'
+passwordLogin = 'XXXXXXX'
 
 #Open this site
 driver.get('https://www.facebook.com/login.php')
@@ -33,15 +33,29 @@ driver.implicitly_wait(5) # wait 5 seconds
 print("waited 5 secs")
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
-print(soup.prettify())
+# print(soup.prettify())
 
 
 #redirect to friends
 driver.get('https://www.facebook.com/'+username+'/friends')
 
 #======== start extracting =======
+driver.implicitly_wait(3) # wait 3 seconds
+print("start extracting")
 
-friendsHTML = 'require("TimeSlice").guard((function(){bigPipe.onPageletArrive({bootloadable:{"ChatTypeaheadWrapper.react":{resources'
+friendsHTML = r'require("TimeSlice").guard((function(){bigPipe.onPageletArrive({bootloadable:{"ChatTypeaheadWrapper.react":{resources'
+keywords_of_friends = r'ChatTypeaheadWrapper'
+tags = soup.find_all('script')
+for tag in tags:
+    # print(tag)
+    current_tag = str(tag)
+    if keywords_of_friends in current_tag:
+        print(tag)
+        print("eurika")
+        startID = current_tag.find(r'{id:')
+        result = current_tag[startID + len('{id:')+len(r'"1008531709",name:"Samuel Chemouny",firstName:"Samuel",vanity:"samuel.chemouny.9"')]
+        print(str(result))
+
 
 # bs = BeautifulSoup(friendsHTML, "html.parser")
 # print (bs(text=re.compile('exact text')))
