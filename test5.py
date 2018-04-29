@@ -71,5 +71,11 @@ for tag in tags:
             print(match[5:])
 
         #go to first friend
-        driver.get('https://www.facebook.com/'+matches2[0][8:])
+
+        for match in matches2:
+            driver.implicitly_wait(5)  # wait 5 seconds
+            print("waited 5 secs")
+            driver.get('https://www.facebook.com/' + match[8:])
+
+
 
