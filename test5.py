@@ -3,13 +3,13 @@ from selenium import webdriver
 import re # regex
 
 #chrome driver, to open the browser
-chromedriver = "../Pal2/chromedriver"
+chromedriver = "../parserTest/chromedriver"
 driver = webdriver.Chrome(chromedriver)
 
 #Change This
 username = "find.freind.184"
 emailLogin = 'yitzhak.sharon7@gmail.com'
-passwordLogin = 'XXXXXXX'
+passwordLogin = 'Aa123456'
 
 #Open this site
 driver.get('https://www.facebook.com/login.php')
@@ -50,20 +50,26 @@ for tag in tags:
     # print(tag)
     current_tag = str(tag)
     if keywords_of_friends in current_tag:
-        print(tag)
+        # print(tag)
         print("eurika")
         startID = current_tag.find(r'{id:')
         result = current_tag[startID + len('{id:')+len(r'"1008531709",name:"Samuel Chemouny",firstName:"Samuel",vanity:"samuel.chemouny.9"')]
         print(str(result))
 
+        my_string = current_tag
+        matches = re.findall(r'{id:"[0-9]+',my_string)
+        print(matches)
 
-# bs = BeautifulSoup(friendsHTML, "html.parser")
-# print (bs(text=re.compile('exact text')))
-print("\n\n\n\n\n")
-# for link in bs.find_all('id'):
-#     print(link)
-# txt = bs.script.get_text()
-# friendID = re.match(r'{id:', txt).group(1)
+        matches2 = re.findall(r'vanity:"[a-zA-Z.0-9]+',my_string)
+        print(matches2)
 
-# print(friendID)
-# soup.find('script').text
+        print("=========vanity===========")
+        for match in matches2:
+            print(match[8:])
+        print("=========id===========")
+        for match in matches:
+            print(match[5:])
+
+        #go to first friend
+        driver.get('https://www.facebook.com/'+matches2[0][8:])
+
