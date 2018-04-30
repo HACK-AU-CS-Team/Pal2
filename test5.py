@@ -9,7 +9,7 @@ driver = webdriver.Chrome(chromedriver)
 #Change This
 username = "find.freind.184"
 emailLogin = 'yitzhak.sharon7@gmail.com'
-passwordLogin = 'Aa123456'
+passwordLogin = 'password'
 
 #Open this site
 driver.get('https://www.facebook.com/login.php')
