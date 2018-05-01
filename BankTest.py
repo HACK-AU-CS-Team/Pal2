@@ -34,11 +34,25 @@ print("FB opened")
 
 friend = 'samuel.chemouny.9'
 driver.get('https://www.facebook.com/'+friend+'/friends')
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
 
+driver.implicitly_wait(5) # wait 5 seconds
+print("waited 5 secs")
+
+
+
+
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+driver.implicitly_wait(5) # wait 5 seconds
+print("waited 5 secs")
+driver.implicitly_wait(5) # wait 5 seconds
+print("waited 5 secs")
 
 html = driver.page_source
 
 soup = BeautifulSoup(html, "html.parser")
-
 print(soup.prettify())
-
