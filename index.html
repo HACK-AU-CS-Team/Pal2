@@ -28,10 +28,17 @@
                 server_user: "neo4j",
                 server_password: "Aa123456",
                 labels: {
-
+                    "Person":{
+                        caption:"name",
+                        "size": "pagerank",
+                        "community": "community"
+                    }
                 },
                 relationships: {
-
+                     "KNOWS":{
+                        caption:"false",
+                        thickness: 1
+                    }
                 },
                 initial_cypher: "MATCH (n)-[r:KNOWS]->(m) RETURN *"
             };
