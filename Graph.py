@@ -2,9 +2,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import selenium.webdriver.support.ui as ui
 from py2neo import Graph,Node,Relationship
-
-import re # regex
-
+from random import randint
+import time
 
 def move_to_element(element, browser):
     action = webdriver.ActionChains(browser)
@@ -49,6 +48,15 @@ def createGraph(username, level):
         print(i)
         link = str(all_friends[i].get_attribute("href"))
         print(link)
+
+        #check if the the connect between the users is exist
+        #if not -->
+
+        ####
+        ####  Enter to the graph
+        ####
+
+        #  call recursion on the user-name
         vanity = all_friends[i].get_attribute("href")
         newUserName = ""
 
@@ -63,19 +71,8 @@ def createGraph(username, level):
             print("vanity:")
             print(newUserName)
 
-
-
         print(newUserName)
 
-
-        #check if the the connect between the users is exist
-        #if not -->
-
-        ####
-        ####  Enter to the graph
-        ####
-
-        #  call recursion on the user-name
         current_user = Node("Person", name=username, age=30)
         person = Node("Person", name=newUserName, age=30)
         temp = graph.run("Match (n:Person {name:'%s'}) return n;" % (newUserName))
@@ -91,28 +88,24 @@ def createGraph(username, level):
             # graph.run("MERGE (u:Person { name:'%s'}) MERGE (m:Person { name:'%s'}) MERGE (m)-[r:POSTED_BY]->(u) RETURN m,r,u);" % (username) , (newUserName))
             mystr = "MERGE (u:Person { name:'%s'}) MERGE (m:Person { name:'%s'}) MERGE (m)-[r:POSTED_BY]->(u) RETURN m,r,u;" % (
                 newUserName, username)
-            myst2 = "MATCH (n:Person) WITH n.name AS name, COLLECT(n) AS nodelist, COUNT(*) AS count WHERE count > 1 CALL apoc.refactor.mergeNodes(nodelist) YIELD node RETURN node;"
-            graph.run(mystr)
             #  graph.run("MERGE (u:Person { name:'%s'}) MERGE (m:Person { name:'%s'}) MERGE (m)-[r:POSTED_BY]->(u) RETURN m,r,u);" % ((username) , (newUserName)))
-            continue
-    myst2 = "MATCH (n:Person) WITH n.name AS name, COLLECT(n) AS nodelist, COUNT(*) AS count WHERE count > 1 CALL apoc.refactor.mergeNodes(nodelist) YIELD node RETURN node;"
-    graph.run((myst2))
-    createGraph(newUserName, level - 1)
 
-        # wait.until(lambda driver: "" != all_friends[i].text) # wait 3 seconds
-        # all_friends = driver.find_elements_by_css_selector("a[href$='fref=pb&hc_location=friends_tab']")
+
+        time.sleep(randint(2,9))
+
+        createGraph(newUserName, level - 1)
 
 
 graph =Graph(password="Aa123456")
-graph.delete_all()
 #chrome driver, to open the browser
 chromedriver = "chromedriver.exe"
 driver = webdriver.Chrome(chromedriver)
 
+
 #Change This
-username = "trump.putin.7528"
-emailLogin = 'trumploveputin777@gmail.com'
-passwordLogin = 'Ff123456'
+username = "amit.dvirhacker.7"
+emailLogin = 'amitdvirishacker@outlook.co.il'
+passwordLogin = 'Rr123456'
 
 #Open this site
 driver.get('https://www.facebook.com/login.php')
@@ -135,5 +128,11 @@ driver.implicitly_wait(5) # wait 5 seconds
 print("waited 2 secs")
 
 #redirect to friends\
+myst2 = "MATCH (n:Person) WITH n.name AS name, COLLECT(n) AS nodelist, COUNT(*) AS count WHERE count > 1 CALL apoc.refactor.mergeNodes(nodelist) YIELD node RETURN node;"
+
+graph.run((myst2))
 
 createGraph(username,4)
+#graph.run("MATCH p=shortestPath((s1:Person {name:'yitzhak.sharon.1'})-[*]-(s2:Person {name:'1475314557'})) RETURN p")
+
+
