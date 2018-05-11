@@ -103,12 +103,12 @@ driver = webdriver.Chrome(chromedriver)
 
 
 #Change This
-username = "amit.dvirhacker.7"
-emailLogin = 'amitdvirishacker@outlook.co.il'
-passwordLogin = 'Rr123456'
+username = ""
+emailLogin = ''
+passwordLogin = ''
 
 #Open this site
-driver.get('https://www.facebook.com/login.php')
+driver.get('https://www..com/.php')
 print("Opened facebook...")
 
 # Find element on login page and enter credentials
